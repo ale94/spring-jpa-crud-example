@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -35,8 +34,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Optional<UserEntity> getById(Long id) {
-        return this.repository.findById(id);
+    public UserEntity getById(Long id) {
+        return repository.findById(id).orElseThrow();
     }
 
     @Override
@@ -57,6 +56,7 @@ public class UserService implements IUserService {
 
     @Override
     public void delete(Long id) {
-        this.repository.deleteById(id);
+        var userToDelete = repository.findById(id).orElseThrow();
+        this.repository.delete(userToDelete);
     }
 }

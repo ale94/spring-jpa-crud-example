@@ -10,7 +10,7 @@ public interface IUserService {
 
     UserEntity create(UserDTO user);
 
-    Optional<UserEntity> getById(Long id);
+    UserEntity getById(Long id);
 
     List<UserEntity> getAll();
 
